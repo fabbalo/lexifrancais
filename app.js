@@ -9,6 +9,7 @@ const el = (id) => document.getElementById(id);
 const screens = {
   home: el('screen-home'),
   study: el('screen-study'),
+  vocabulary: el('screen-vocabulary'),
   done: el('screen-done'),
 };
 
@@ -44,6 +45,17 @@ el('btn-study').addEventListener('click', async () => {
 el('btn-import').addEventListener('click', () => {
   el('csv-input').click();
 });
+
+el('btn-vocabulary').addEventListener('click', async () => {
+  await renderVocabulary();
+  showScreen('vocabulary');
+});
+
+
+el('btn-back-vocabulary').addEventListener('click', () => {
+  showScreen('home');
+});
+
 
 el('csv-input').addEventListener('change', async (event) => {
   const file = event.target.files && event.target.files[0];
@@ -216,6 +228,58 @@ el('btn-done-home').addEventListener('click', async () => {
   showScreen('home');
   await refreshHomeStats();
 });
+
+async function renderVocabulary() {
+
+  const container = el('vocabulary-list');
+  container.innerHTML = '';
+
+  const words = await Db.getAllWords();
+
+  for (const word of words) {
+
+    const review = await Db.getReviewForWord(word.id);
+
+    const card = document.createElement('div');
+    card.className = 'vocab-card';
+
+    let status = 'Nueva';
+
+    if (review.repetitions >= 3) {
+      status = '🟢 Dominada';
+    } 
+    else if (review.repetitions > 0) {
+      status = '🟡 Aprendiendo';
+    }
+
+    const date = new Date(review.nextReview)
+      .toLocaleDateString('es-ES');
+
+
+    card.innerHTML = `
+      <h3>${word.mot}</h3>
+      <p>${word.traduction}</p>
+
+      <small>
+      Estado: ${status}<br>
+      Repeticiones: ${review.repetitions}<br>
+      Próximo repaso: ${date}
+      </small>
+    `;
+
+    container.appendChild(card);
+  }
+}
+
+
+
+
+
+
+
+
+
+
 
 /* ---------------------- INSTALACIÓN PWA ---------------------- */
 
