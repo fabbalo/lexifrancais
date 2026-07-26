@@ -125,17 +125,18 @@ async function importCsvString(csvText, replaceExisting = false) {
 
     try {
       const word = {
-        mot,
-        traduction,
-        type: cell(row, 'type'),
-        niveau: cell(row, 'niveau'),
-        genre: cell(row, 'genre'),
-        plural: cell(row, 'plural'),
-        expression: cell(row, 'expression'),
-        example: cell(row, 'example'),
-        present: cell(row, 'present'),
-        passeCompose: cell(row, 'passeCompose'),
-      };
+  mot,
+  traduction,
+  categorie: cell(row, 'categorie'),
+  type: cell(row, 'type'),
+  niveau: cell(row, 'niveau'),
+  genre: cell(row, 'genre'),
+  plural: cell(row, 'plural'),
+  expression: cell(row, 'expression'),
+  example: cell(row, 'example'),
+  present: cell(row, 'present'),
+  passeCompose: cell(row, 'passeCompose'),
+};
 
       const { id, isNew } = await Db.upsertWord(word, replaceExisting);
       await Db.ensureReviewExists(id);
