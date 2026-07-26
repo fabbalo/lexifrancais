@@ -260,7 +260,7 @@ async function renderVocabulary() {
       <h3>${word.mot}</h3>
       <p>${word.traduction}</p>
       <p>
-📂 ${word.categorie || 'Sin categoría'}
+📂 CATEGORIA: ${JSON.stringify(word)}
 </p>
 
       <small>
