@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>LexiFrançais</title>
+<meta name="description" content="Flashcards con repetición espaciada para el TCF Canada" />
+
+<!-- PWA -->
+<link rel="manifest" href="manifest.json" />
+<meta name="theme-color" content="#28362F" />
+<link rel="apple-touch-icon" href="icons/icon-192.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="LexiFrançais" />
+
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<div id="app">
+
+  <!-- ============ PANTALLA: INICIO ============ -->
+  <section id="screen-home" class="screen active">
+    <div class="topbar">
+      <div>
+        <span class="eyebrow">carnet de vocabulaire</span>
+        <h1>LexiFrançais</h1>
+      </div>
+      <button class="icon-btn" id="btn-refresh" title="Actualizar" aria-label="Actualizar">↻</button>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-card accent-yellow">
+        <span class="value" id="stat-due">0</span>
+        <span class="label">Pendientes hoy</span>
+      </div>
+      <div class="stat-card accent-mint">
+        <span class="value" id="stat-learned">0</span>
+        <span class="label">Aprendidas</span>
+      </div>
+    </div>
+
+    <p class="total-line" id="stat-total">0 palabras en tu vocabulario</p>
+
+    <button class="btn btn-primary" id="btn-study" disabled>Estudiar</button>
+    <button class="btn btn-outline" id="btn-import">📄 Importar vocabulario (CSV)</button>
+
+    <input type="file" id="csv-input" class="hidden-input" accept=".csv,text/csv" />
+  </section>
+
+  <!-- ============ PANTALLA: ESTUDIO ============ -->
+  <section id="screen-study" class="screen">
+    <div class="topbar">
+      <button class="icon-btn" id="btn-back-home" aria-label="Volver">←</button>
+      <span class="study-progress" id="study-progress" style="margin:0;">0 / 0</span>
+      <span style="width:32px;"></span>
+    </div>
+
+    <div class="card-stage">
+      <div class="flashcard" id="flashcard">
+        <div class="card-face front">
+          <div class="card-front-content">
+            <div class="mot" id="card-mot">mot</div>
+            <div class="ipa" id="card-ipa"></div>
+            <button class="audio-btn" id="btn-audio-front" aria-label="Escuchar pronunciación">🔊</button>
+            <div class="hint">Toca la tarjeta para ver el significado</div>
+          </div>
+        </div>
+        <div class="card-face back">
+          <div class="back-header">
+            <div class="traduction" id="card-traduction">traduction</div>
+            <button class="audio-btn" id="btn-audio-back" aria-label="Escuchar pronunciación" style="width:44px;height:44px;font-size:1.1rem;">🔊</button>
+          </div>
+          <div class="tags" id="card-tags"></div>
+          <div id="card-fields"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="answer-row">
+      <button class="answer-btn dontknow" data-answer="dontKnow">
+        <span class="emoji">😞</span><span class="label">No la sé</span>
+      </button>
+      <button class="answer-btn doubt" data-answer="doubt">
+        <span class="emoji">😐</span><span class="label">Dudé</span>
+      </button>
+      <button class="answer-btn know" data-answer="know">
+        <span class="emoji">😊</span><span class="label">La sé</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ============ PANTALLA: TERMINADO ============ -->
+  <section id="screen-done" class="screen">
+    <div class="done-screen">
+      <div class="trophy">🏆</div>
+      <h2>¡Terminaste el repaso de hoy!</h2>
+      <button class="btn btn-primary" id="btn-done-home" style="max-width:220px;">Volver al inicio</button>
+    </div>
+  </section>
+
+  <!-- ============ MODAL: RESULTADO DE IMPORTACIÓN ============ -->
+  <div class="modal-backdrop" id="import-modal">
+    <div class="modal">
+      <h3>Importación completada</h3>
+      <pre id="import-result-text"></pre>
+      <button class="btn btn-primary" id="btn-close-import" style="margin-top:10px;">OK</button>
+    </div>
+  </div>
+
+  <!-- ============ BANNER: INSTALAR APP ============ -->
+  <div class="install-banner" id="install-banner">
+    <span>Instala LexiFrançais en tu pantalla de inicio</span>
+    <button id="btn-install">Instalar</button>
+  </div>
+
+</div>
+
+<script src="js/db.js"></script>
+<script src="js/sm2.js"></script>
+<script src="js/csv.js"></script>
+<script src="js/tts.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
