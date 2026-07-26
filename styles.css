@@ -439,3 +439,23 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .flashcard, .screen { transition: none; animation: none; }
 }
+
+
+
+.vocab-card {
+  background:white;
+  border-radius:16px;
+  padding:16px;
+  margin-bottom:12px;
+  box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+
+.vocab-card h3 {
+  margin:0;
+}
+
+.vocab-card p {
+  font-size:1.1rem;
+  margin:8px 0;
+}
+
