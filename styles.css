@@ -443,7 +443,8 @@ body {
 
 
 .vocab-card {
-  background:white;
+  background: #ffffff;
+  color: #222222;
   border-radius:16px;
   padding:16px;
   margin-bottom:12px;
@@ -451,11 +452,18 @@ body {
 }
 
 .vocab-card h3 {
-  margin:0;
+  color:#1a1a1a;
+  margin:0 0 8px 0;
 }
 
 .vocab-card p {
+  color:#333333;
   font-size:1.1rem;
   margin:8px 0;
 }
+
+.vocab-card small {
+  color:#555555;
+}
+
 
