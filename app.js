@@ -259,6 +259,9 @@ async function renderVocabulary() {
     card.innerHTML = `
       <h3>${word.mot}</h3>
       <p>${word.traduction}</p>
+      <p>
+📂 ${word.categorie || 'Sin categoría'}
+</p>
 
       <small>
       Estado: ${status}<br>
