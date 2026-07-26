@@ -7,6 +7,7 @@
 const CSV_EXPECTED_HEADERS = [
   'mot',
   'traduction',
+  'categorie',
   'type',
   'niveau',
   'genre',
