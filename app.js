@@ -69,7 +69,7 @@ el('csv-input').addEventListener('change', async (event) => {
 
   try {
     const text = await file.text();
-    const result = await importCsvString(text, false);
+    const result = await importCsvString(text, true);
     await refreshHomeStats();
     showImportResult(result);
   } catch (e) {
